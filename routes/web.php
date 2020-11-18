@@ -30,3 +30,12 @@ Route::get('XXX','Admin/AAAcontroller@bbb');
 Route::get('admin/profile/create','Admin\ProfileController@add');
 Route::get('admin/profile/edit','Admin\ProfileController@edit');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// この設定したcreate.blade.phpのページに飛ぶ時にログイン画面にリダイレクトする、ログインできていればブラウザが普通に表示される
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+});
