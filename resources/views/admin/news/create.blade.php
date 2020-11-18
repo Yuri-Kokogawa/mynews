@@ -8,7 +8,7 @@
         <title>My News</title>
     </head>
 <body>
-    <h1>My News作成画面</h1>
+    <h1></h1>
 </body>
 </html>
 
