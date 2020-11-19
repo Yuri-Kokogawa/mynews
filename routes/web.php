@@ -36,6 +36,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // この設定したcreate.blade.phpのページに飛ぶ時にログイン画面にリダイレクトする、ログインできていればブラウザが普通に表示される
-Route::group(['prefix' => 'admin'], function() {
-    Route::get('news/create', 'Admin\NewsController@add')->middleware('auth');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+     Route::get('news/create', 'Admin\NewsController@add');
+     Route::post('news/create', 'Admin\NewsController@create'); # 追記
+//  PHP/Laravel 13 ニュース投稿画面を作成しよう 課題３
+     Route::post('profile/create','Admin\ProfileController@crete');
 });
