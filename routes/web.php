@@ -27,8 +27,8 @@ Route::get('admin/profile/edit','Admin\ProfileController@edit');
 Route::get('XXX','Admin/AAAcontroller@bbb');
 
 // 課題５
-Route::get('admin/profile/create','Admin\ProfileController@add');
-Route::get('admin/profile/edit','Admin\ProfileController@edit');
+Route::get('admin/profile/create','Admin\ProfileController@add')->middleware('auth');
+Route::get('admin/profile/edit','Admin\ProfileController@edit')->middleware('auth');
 
 
 Auth::routes();
