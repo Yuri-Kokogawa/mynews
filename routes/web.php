@@ -39,6 +39,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
      Route::get('news/create', 'Admin\NewsController@add');
      Route::post('news/create', 'Admin\NewsController@create'); # 追記
-//  PHP/Laravel 13 ニュース投稿画面を作成しよう 課題３
-     Route::post('profile/create','Admin\ProfileController@crete');
+//  PHP/Laravel 13 ニュース投稿画面を作成しよう 課題3
+     Route::post('profile/create','Admin\ProfileController@create');
+//  PHP/Laravel 13 ニュース投稿画面を作成しよう 課題6
+     Route::post('profile/edit','Admin\ProfileController@update');
 });
