@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'ニュースの新規作成')
+@section('title', 'ニュース新規作成')
 
 @section('content')
     <div class="container">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="更新">
+                    <input type="submit" class="btn btn-primary" value="投稿">
                 </form>
             </div>
         </div>
