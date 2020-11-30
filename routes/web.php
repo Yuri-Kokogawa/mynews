@@ -45,7 +45,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 //  PHP/Laravel 13 ニュース投稿画面を作成しよう 課題6
      Route::post('profile/edit','Admin\ProfileController@update');
      
-     Route::get('news/edit', 'Admin\NewsController@edit') ;// 追記
-     Route::post('news/edit', 'Admin\NewsController@update'); // 追記
+     Route::get('news/edit','Admin\NewsController@edit') ;// 追記
+     Route::post('news/edit','Admin\NewsController@update'); // 追記
+      Route::get('news/delete', 'Admin\NewsController@delete');
 });
 
