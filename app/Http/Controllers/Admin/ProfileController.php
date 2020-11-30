@@ -27,11 +27,22 @@ class ProfileController extends Controller
       unset($form['_token']);
      
       // データベースに保存する
-       // データベースに保存する
       $news->fill($form);
       $news->save();
       return redirect('admin/profile/create');
     }
+    
+     public function index(Request $request)
+  {
+      $cond_title = $request->cond_title;
+      if ($cond_title != '') {
+          $posts = News::where('title', $cond_title)->get();
+      } else {
+          $posts = News::all();
+      }
+      return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+  }
+
 
     
    
@@ -53,7 +64,7 @@ class ProfileController extends Controller
   {
       // Validationをかける
       $this->validate($request, Profile::$rules);
-      // News Modelからデータを取得する
+      // Profile Modelからデータを取得する
       $news = Profile::find($request->id);
       // 送信されてきたフォームデータを格納する
       $news_form = $request->all();
