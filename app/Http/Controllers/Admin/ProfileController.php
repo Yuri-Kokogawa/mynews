@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Profile;
-use App\History;
+use App\ProfileHistory;
 use Carbon\Carbon;
 
 
