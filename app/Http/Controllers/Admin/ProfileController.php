@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
-    //課題５で追記していく
+    //課題５追記していく
      public function add()
     {
         return view('admin.profile.create');
