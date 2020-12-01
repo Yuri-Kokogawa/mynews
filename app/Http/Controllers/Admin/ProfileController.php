@@ -59,7 +59,7 @@ class ProfileController extends Controller
       if (empty($profile)) {
         abort(404);    
       }
-      return view('admin.profile.edit', ['news_form' => $profile]);
+      return view('admin.profile.edit', ['profile_form' => $profile]);
   }
 
 
@@ -72,14 +72,14 @@ class ProfileController extends Controller
       // 送信されてきたフォームデータを格納する
       $profile_form = $request->all();
       
-      unset($news_form['_token']);
+      unset($profile_form['_token']);
 
       // 該当するデータを上書きして保存する
-      $profile->fill($news_form)->save();
+      $profile->fill($profile_form)->save();
       
       // 以下を追記
         $history = new ProfileHistory;
-        $history->news_id = $profile->id;
+        $history->profile_id = $profile->id;
         $history->edited_at = Carbon::now();
         $history->save();
 
