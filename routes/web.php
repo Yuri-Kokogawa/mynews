@@ -16,19 +16,10 @@ Route::get('/', function () {
 });
 
 
-// 10 ControllerとViewが連携できるようにしようのカリキュラム
-Route::get('admin/news/create','Admin\NewsController@add');
-// 10 ControllerとViewが連携できるようにしようの課題
-Route::get('admin/profile/create','Admin\ProfileController@add');
-Route::get('admin/profile/edit','Admin\ProfileController@edit');
-
 
 // 課題４
 Route::get('XXX','Admin/AAAcontroller@bbb');
 
-// 課題５
-Route::get('admin/profile/create','Admin\ProfileController@add')->middleware('auth');
-Route::get('admin/profile/edit','Admin\ProfileController@edit')->middleware('auth');
 
 
 Auth::routes();
@@ -42,15 +33,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
      Route::get('news', 'Admin\NewsController@index'); // 追記
 //  PHP/Laravel 13 ニュース投稿画面を作成しよう 課題3
      Route::post('profile/create','Admin\ProfileController@create');
-//  PHP/Laravel 13 ニュース投稿画面を作成しよう 課題6
-     Route::post('profile/edit','Admin\ProfileController@update');
+     Route::get('profile/create','Admin\ProfileController@add');
+
      
      Route::get('news/edit','Admin\NewsController@edit') ;// 追記
      Route::post('news/edit','Admin\NewsController@update'); // 追記
      Route::get('news/delete', 'Admin\NewsController@delete');
       
-      Route::get('profile', 'Admin\ProfileController@index');
-     Route::get('profile/create','Admin\ProfileController@edit') ;// 追記
-     Route::post('profile/create','Admin\ProfileController@update'); // 追記
+    Route::get('profile', 'Admin\ProfileController@index'); 
+    Route::post('profile/edit','Admin\ProfileController@update'); 
+    Route::get('profile/edit', 'Admin\ProfileController@edit');
 });
 

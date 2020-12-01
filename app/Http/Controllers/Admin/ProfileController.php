@@ -36,11 +36,11 @@ class ProfileController extends Controller
   {
       $cond_title = $request->cond_title;
       if ($cond_title != '') {
-          $posts = News::where('title', $cond_title)->get();
+          $posts = Profile::where('title', $cond_title)->get();
       } else {
-          $posts = News::all();
+          $posts = Profile::all();
       }
-      return view('admin.news.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+      return view('admin.profile.index', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
 
 
@@ -52,11 +52,11 @@ class ProfileController extends Controller
   public function edit(Request $request)
   {
       // Profile Modelからデータを取得する
-      $news = Profile::find($request->id);
-      if (empty($news)) {
+      $profile = Profile::find($request->id);
+      if (empty($profile)) {
         abort(404);    
       }
-      return view('admin.profile.create', ['news_form' => $news]);
+      return view('admin.profile.edit', ['news_form' => $profile]);
   }
 
 
@@ -68,17 +68,7 @@ class ProfileController extends Controller
       $news = Profile::find($request->id);
       // 送信されてきたフォームデータを格納する
       $news_form = $request->all();
-      if ($request->remove == 'true') {
-          $news_form['image_path'] = null;
-      } elseif ($request->file('image')) {
-          $path = $request->file('image')->store('public/image');
-          $news_form['image_path'] = basename($path);
-      } else {
-          $news_form['image_path'] = $news->image_path;
-      }
-
-      unset($news_form['image']);
-      unset($news_form['remove']);
+      
       unset($news_form['_token']);
 
       // 該当するデータを上書きして保存する
